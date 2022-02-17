@@ -34,10 +34,6 @@ body {
   cursor: pointer;
 }
 
-.cell.x {
-  /* background-color: red; */
-}
-
 .cell.x::before,
 .cell.x::after {
   background-color: green;
@@ -69,28 +65,27 @@ body {
   transform: rotate(-45deg);
 }
 
-.cell.circle{
-  /* background-color: blue; */
-}
-
 .cell.circle::before,
 .cell.circle::after{
   content: "";
   background-color: black;
   position: absolute;
   border-radius: 50%;
+  transition: all 2s ease-in-out;
 }
 
 .cell.circle::before {
   width: var(--mark-size);
   height: var(--mark-size);
   background-color: red;
+  transition: all 2s ease-in-out;
 }
 
 .cell.circle::after {
   width: calc(var(--mark-size) * 0.7);
   height: calc(var(--mark-size) * 0.7);
   background-color: white;
+  transition: all 2s ease-in-out;
 }
 
 

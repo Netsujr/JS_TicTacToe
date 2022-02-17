@@ -33,7 +33,7 @@ function handleClick(e) {
   } else if (isDraw()) {
     endGame(true);
   } else {
-    swapTurns();
+    // swapTurns();
     setBoardHoverClass();
   }
 }
@@ -50,10 +50,7 @@ function endGame(draw) {
 
 function placeMark(cell, currentClass) {
   cell.classList.add(currentClass);
-}
-
-function swapTurns() {
-  circleTurn = !circleTurn;
+  computerLogic();
 }
 
 function isDraw() {
@@ -96,3 +93,12 @@ restartButton.addEventListener('click', () => {
 
   startGame();
 });
+
+
+// AI logic when switching turns
+function computerLogic(e) {
+  if (cellsElements[0].classList.contains(X_CLASS)) {
+    cellsElements[4].classList.add(CIRCLE_CLASS);
+    cellsElements[4].removeEventListener('click', handleClick);
+  }
+}
