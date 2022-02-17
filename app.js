@@ -97,8 +97,16 @@ restartButton.addEventListener('click', () => {
 
 // AI logic when switching turns
 function computerLogic(e) {
-  if (cellsElements[0].classList.contains(X_CLASS)) {
+  if (cellsElements[0].classList.contains(X_CLASS)
+      || cellsElements[2].classList.contains(X_CLASS)
+      || cellsElements[6].classList.contains(X_CLASS)
+      || cellsElements[8].classList.contains(X_CLASS)
+      ) {
     cellsElements[4].classList.add(CIRCLE_CLASS);
     cellsElements[4].removeEventListener('click', handleClick);
+  }
+
+  if (cellsElements[4].classList.contains(X_CLASS)) {
+
   }
 }
