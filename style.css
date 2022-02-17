@@ -74,9 +74,7 @@ body {
 }
 
 .cell.circle::before,
-.cell.circle::after,
-.board.circle .cell:hover::before,
-.board.circle .cell:hover::after {
+.cell.circle::after{
   content: "";
   background-color: black;
   position: absolute;
