@@ -50,7 +50,7 @@ function endGame(draw) {
 
 function placeMark(cell, currentClass) {
   cell.classList.add(currentClass);
-  computerLogic();
+  renatoLogic();
 }
 
 function isDraw() {
@@ -95,14 +95,15 @@ restartButton.addEventListener('click', () => {
 });
 
 
-// AI logic when switching turns
-function computerLogic(e) {
+// AI logic
+function renatoLogic(e) {
   if (cellsElements[0].classList.contains(X_CLASS)
       || cellsElements[2].classList.contains(X_CLASS)
       || cellsElements[6].classList.contains(X_CLASS)
       || cellsElements[8].classList.contains(X_CLASS)
       ) {
     cellsElements[4].classList.add(CIRCLE_CLASS);
+    cellsElements[4].classList.remove(X_CLASS);
     cellsElements[4].removeEventListener('click', handleClick);
   }
 
