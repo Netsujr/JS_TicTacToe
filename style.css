@@ -40,18 +40,32 @@ body {
 
 .cell.x::before,
 .cell.x::after {
+  background-color: green;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+  background-color: lightgreen;
+  opacity: 0.8;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
   content: "";
   width: calc(var(--mark-size) * 0.15);
   height: var(--mark-size);
-  background-color: black;
   position: absolute;
 }
 
-.cell.x::before {
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
   transform: rotate(45deg);
 }
 
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
   transform: rotate(-45deg);
 }
 
@@ -60,7 +74,9 @@ body {
 }
 
 .cell.circle::before,
-.cell.circle::after {
+.cell.circle::after,
+.board.circle .cell:hover::before,
+.board.circle .cell:hover::after {
   content: "";
   background-color: black;
   position: absolute;
@@ -70,7 +86,7 @@ body {
 .cell.circle::before {
   width: var(--mark-size);
   height: var(--mark-size);
-  background-color: black;
+  background-color: red;
 }
 
 .cell.circle::after {
@@ -79,6 +95,8 @@ body {
   background-color: white;
 }
 
+
+/* -----------------------Board Borders-------------------------------- */
 .cell:first-child,
 .cell:nth-child(2),
 .cell:nth-child(3) {
