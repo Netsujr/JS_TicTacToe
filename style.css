@@ -26,8 +26,36 @@ body {
 .cell {
   width: var(--cell-size);
   height: var(--cell-size);
-  /* background-color: #000000; */
   border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.cell.x {
+  /* background-color: red; */
+}
+
+.cell.x::before,
+.cell.x::after {
+  content: "";
+  width: calc(var(--mark-size) * 0.15);
+  height: var(--mark-size);
+  background-color: black;
+  position: absolute;
+}
+
+.cell.x::before {
+  transform: rotate(45deg);
+}
+
+.cell.x::after {
+  transform: rotate(-45deg);
+}
+
+.cell.o{
+
 }
 
 .cell:first-child,
