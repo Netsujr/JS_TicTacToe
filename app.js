@@ -35,6 +35,8 @@ function handleClick(e) {
   } else {
     // swapTurns();
     setBoardHoverClass();
+    console.log(markedCells());
+    console.log(computerMove());
   }
 }
 
@@ -50,6 +52,7 @@ function endGame(draw) {
 
 function placeMark(cell, currentClass) {
   cell.classList.add(currentClass);
+  computerMove();
 }
 
 function isDraw() {
@@ -94,12 +97,48 @@ restartButton.addEventListener('click', () => {
 });
 
 
-// AI logic
+// computer logic
 
 // create a function to check for available cells
+function markedCells() {
+  let cells = [];
+  for (let i = 0; i < cellsElements.length; i++) {
+    if (cellsElements[i].classList.contains(X_CLASS) || cellsElements[i].classList.contains(CIRCLE_CLASS)) {
+      cells.push(i);
+    }
+  }
+  return cells;
+}
+
+// create a function to check for computer best move
+
+function bestMove() {
+  let cells = markedCells();
+  let bestCell = cells[0];
+  let bestScore = -Infinity;
+  for (let i = 0; i < cells.length; i++) {
+    let cell = cells[i];
+    let cellScore = minimax(cell, 0, false);
+    if (cellScore > bestScore) {
+      bestScore = cellScore;
+      bestCell = cell;
+    }
+  }
+  return bestCell;
+}
 
 
-// create a function to check for AI best move
+// create a function to place computer move
 
-
-// create a function to place AI move
+function computerMove(){
+  let cell = bestMove();
+  placeMark(cellsElements[cell], CIRCLE_CLASS);
+  if (checkWin(CIRCLE_CLASS)) {
+    endGame(false);
+  } else if (isDraw()) {
+    endGame(true);
+  } else {
+    swapTurns();
+    setBoardHoverClass();
+  }
+}
