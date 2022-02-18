@@ -99,7 +99,6 @@ restartButton.addEventListener('click', () => {
 
 // computer logic
 
-// create a function to check for available cells
 function markedCells() {
   let cells = [];
   for (let i = 0; i < cellsElements.length; i++) {
@@ -110,29 +109,10 @@ function markedCells() {
   return cells;
 }
 
-// create a function to check for computer best move
-
-function bestMove() {
+function computerMove() {
   let cells = markedCells();
-  let bestCell = cells[0];
-  let bestScore = -Infinity;
-  for (let i = 0; i < cells.length; i++) {
-    let cell = cells[i];
-    let cellScore = minimax(cell, 0, false);
-    if (cellScore > bestScore) {
-      bestScore = cellScore;
-      bestCell = cell;
-    }
-  }
-  return bestCell;
-}
-
-
-// create a function to place computer move
-
-function computerMove(){
-  let cell = bestMove();
-  placeMark(cellsElements[cell], CIRCLE_CLASS);
+  let move = minimax(cells, true).index;
+  cellsElements[move].classList.add(CIRCLE_CLASS);
   if (checkWin(CIRCLE_CLASS)) {
     endGame(false);
   } else if (isDraw()) {
