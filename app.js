@@ -99,6 +99,7 @@ restartButton.addEventListener('click', () => {
 
 // computer logic
 
+// create a function to check for available cells
 function markedCells() {
   let cells = [];
   for (let i = 0; i < cellsElements.length; i++) {
@@ -109,10 +110,55 @@ function markedCells() {
   return cells;
 }
 
-function computerMove() {
+// create a function to check for computer best move
+
+function bestMove() {
   let cells = markedCells();
-  let move = minimax(cells, true).index;
-  cellsElements[move].classList.add(CIRCLE_CLASS);
+  let bestCell = cells[0];
+  let bestScore = -Infinity;
+  for (let i = 0; i < cells.length; i++) {
+    let cell = cells[i];
+    let cellScore = minimax(cell, false, 0);
+    if (cellScore > bestScore) {
+      bestScore = cellScore;
+      bestCell = cell;
+    }
+  }
+  return bestCell;
+}
+
+// define minmax function
+function minimax(current_board, current_player) {
+  let availableCells = markedCells(current_board);
+  if (checkWin(CIRCLE_CLASS)) {
+    return 1;
+  } else if (checkWin(X_CLASS)) {
+    return -1;
+  } else if (availableCells.length === 0) {
+    return 0;
+  }
+  let moves = [];
+  for (let i = 0; i < availableCells.length; i++) {
+    let move = {};
+    move.index = current_board[availableCells[i]];
+    current_board[availableCells[i]] = current_player ? 1 : -1;
+    if (current_player) {
+      move.score = minimax(current_board, false);
+    } else {
+      move.score = minimax(current_board, true);
+    }
+    current_board[availableCells[i]] = move.index;
+    moves.push(move);
+  }
+}
+
+
+
+// create a function to place computer move
+
+function computerMove() {
+  let cell = bestMove();
+  placeMark(cellsElements[cell], CIRCLE_CLASS);
   if (checkWin(CIRCLE_CLASS)) {
     endGame(false);
   } else if (isDraw()) {
