@@ -71,21 +71,18 @@ body {
   background-color: black;
   position: absolute;
   border-radius: 50%;
-  transition: all 2s ease-in-out;
 }
 
 .cell.circle::before {
   width: var(--mark-size);
   height: var(--mark-size);
   background-color: red;
-  transition: all 2s ease-in-out;
 }
 
 .cell.circle::after {
   width: calc(var(--mark-size) * 0.7);
   height: calc(var(--mark-size) * 0.7);
   background-color: white;
-  transition: all 2s ease-in-out;
 }
 
 
@@ -147,4 +144,4 @@ body {
 .winning-message.show {
   display: flex;
 }
-/* add not(). to circle classes  */
+ /* circle class transition in */

@@ -50,7 +50,6 @@ function endGame(draw) {
 
 function placeMark(cell, currentClass) {
   cell.classList.add(currentClass);
-  renatoLogic();
 }
 
 function isDraw() {
@@ -96,18 +95,11 @@ restartButton.addEventListener('click', () => {
 
 
 // AI logic
-function renatoLogic(e) {
-  if (cellsElements[0].classList.contains(X_CLASS)
-      || cellsElements[2].classList.contains(X_CLASS)
-      || cellsElements[6].classList.contains(X_CLASS)
-      || cellsElements[8].classList.contains(X_CLASS)
-      ) {
-    cellsElements[4].classList.add(CIRCLE_CLASS);
-    cellsElements[4].classList.remove(X_CLASS);
-    cellsElements[4].removeEventListener('click', handleClick);
-  }
 
-  if (cellsElements[4].classList.contains(X_CLASS)) {
+// create a function to check for available cells
 
-  }
-}
+
+// create a function to check for AI best move
+
+
+// create a function to place AI move
